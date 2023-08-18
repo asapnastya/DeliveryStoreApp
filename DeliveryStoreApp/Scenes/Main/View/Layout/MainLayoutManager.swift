@@ -61,14 +61,14 @@ final class MainLayoutManager {
 // MARK: - StoriesSection
     private func storiesLayoutSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(90),
-            heightDimension: .absolute(90)
+            widthDimension: .absolute(105),
+            heightDimension: .absolute(105)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .estimated(550),
-            heightDimension: .absolute(90)
+            heightDimension: .absolute(105)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(
