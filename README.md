@@ -1,5 +1,3 @@
-# DeliveryStoreApp
-
 # Основные функции:
 
 - Написано с помощью **CollectionView** и **CompositionalLayout**
