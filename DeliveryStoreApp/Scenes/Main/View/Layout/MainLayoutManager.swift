@@ -138,6 +138,7 @@ final class MainLayoutManager {
         var initialSection = true
         let itemCount = 6
         
+        if #available(iOS 15, *) {
         section.visibleItemsInvalidationHandler = { cells, point, _ in
             guard let indexPath = cells.first?.indexPath
             else { return }
@@ -170,7 +171,7 @@ final class MainLayoutManager {
                 collectionView.contentOffset.y = tempOffsetY
             }
         }
-        
+    }
         return section
     }
     
