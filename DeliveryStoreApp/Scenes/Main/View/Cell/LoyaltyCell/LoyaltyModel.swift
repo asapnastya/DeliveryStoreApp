@@ -10,10 +10,9 @@ import Foundation
 struct LoyaltyModel {
     
     let image : String
-    let numberOfBonuses: String
-    let bonusWord: String
+    let numberOfBonuses: Int
 }
 
 let loyaltyModelMockData = [
-    LoyaltyModel(image: "Loyalty2", numberOfBonuses: "0", bonusWord: "бонусов")
+    LoyaltyModel(image: "Loyalty2", numberOfBonuses: 0)
 ]
