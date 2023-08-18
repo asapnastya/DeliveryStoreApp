@@ -16,9 +16,8 @@ class LoyaltyCell: UICollectionViewCell {
         didSet {
             guard let model = model else { return }
             
+            setupNumberOfBonusesText(with: model.numberOfBonuses)
             loyaltyImage.image = UIImage(named: model.image)
-            numberOfBonusesLabel.text = model.numberOfBonuses
-            bonusWordLabel.text = model.bonusWord
             
         }
     }
@@ -36,24 +35,11 @@ class LoyaltyCell: UICollectionViewCell {
     private lazy var numberOfBonusesLabel: UILabel = {
         let label = UILabel()
 
-        label.font = UIFont.boldSystemFont(ofSize: 36)
-        label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
-    
-    
-    private lazy var bonusWordLabel: UILabel = {
-        let label = UILabel()
 
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
 // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,6 +53,32 @@ class LoyaltyCell: UICollectionViewCell {
         
         configure()
         setupLayout()
+    }
+    
+    private func setupNumberOfBonusesText(with numberOfBonuses: Int) {
+        let mainFont = UIFont.boldSystemFont(ofSize: 36)
+        let smallerFont = UIFont.boldSystemFont(ofSize: 17)
+        
+        let attributedText = NSMutableAttributedString()
+        
+        let numberOfBonusesText = NSAttributedString(
+            string: "\(numberOfBonuses)",
+            attributes: [
+                .font: mainFont,
+                .foregroundColor: UIColor.red
+            ]
+        )
+        
+        attributedText.append(numberOfBonusesText)
+        
+        let wordBonusesText = NSAttributedString(string: "  бонусов", attributes: [
+            .font: smallerFont,
+            .foregroundColor: UIColor.red
+        ])
+        
+        attributedText.append(wordBonusesText)
+        
+        numberOfBonusesLabel.attributedText = attributedText
     }
 }
     
@@ -88,7 +100,6 @@ extension LoyaltyCell {
     func setupLayout() {
         contentView.addSubview(loyaltyImage)
         contentView.addSubview(numberOfBonusesLabel)
-        contentView.addSubview(bonusWordLabel)
         
         NSLayoutConstraint.activate([
             loyaltyImage.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -99,12 +110,7 @@ extension LoyaltyCell {
             numberOfBonusesLabel.topAnchor.constraint(equalTo: loyaltyImage.topAnchor,constant: -18),
             numberOfBonusesLabel.bottomAnchor.constraint(equalTo: loyaltyImage.bottomAnchor,constant: -36),
             numberOfBonusesLabel.leadingAnchor.constraint(equalTo: loyaltyImage.leadingAnchor, constant: 18),
-            numberOfBonusesLabel.trailingAnchor.constraint(equalTo: bonusWordLabel.trailingAnchor, constant: -2),
-            
-            bonusWordLabel.topAnchor.constraint(equalTo: loyaltyImage.topAnchor, constant: 20),
-            bonusWordLabel.bottomAnchor.constraint(equalTo: loyaltyImage.bottomAnchor,constant: -60),
-            bonusWordLabel.leadingAnchor.constraint(equalTo: loyaltyImage.leadingAnchor, constant: 52),
-            bonusWordLabel.trailingAnchor.constraint(lessThanOrEqualTo: loyaltyImage.trailingAnchor)
+            numberOfBonusesLabel.trailingAnchor.constraint(equalTo: loyaltyImage.trailingAnchor)
         ])
     }
 }
